@@ -119,6 +119,16 @@ func (b *bloomcache) DeleteBlock(k cid.Cid) error {
 	return b.blockstore.DeleteBlock(k)
 }
 
+func (b *bloomcache) BloomAdd(k cid.Cid) error {
+	if !k.Defined() {
+		return nil
+	}
+	if b.BloomActive() {
+		b.bloom.AddTS(k.Hash())
+	}
+	return nil
+}
+
 // if ok == false has is inconclusive
 // if ok == true then has respons to question: is it contained
 func (b *bloomcache) hasCached(k cid.Cid) (has bool, ok bool) {

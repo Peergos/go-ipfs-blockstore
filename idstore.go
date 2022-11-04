@@ -33,6 +33,10 @@ func (b *idstore) DeleteBlock(k cid.Cid) error {
 	return b.bs.DeleteBlock(k)
 }
 
+func (b *idstore) BloomAdd(k cid.Cid) error {
+	return b.bs.BloomAdd(k)
+}
+
 func (b *idstore) Has(k cid.Cid) (bool, error) {
 	isId, _ := extractContents(k)
 	if isId {

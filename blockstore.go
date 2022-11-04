@@ -33,6 +33,7 @@ var ErrNotFound = errors.New("blockstore: block not found")
 // of abstraction which allows to add different caching strategies.
 type Blockstore interface {
 	DeleteBlock(cid.Cid) error
+        BloomAdd(cid.Cid) error
 	Has(cid.Cid) (bool, error)
 	Get(cid.Cid) (blocks.Block, error)
 
@@ -187,6 +188,10 @@ func (bs *blockstore) GetSize(k cid.Cid) (int, error) {
 
 func (bs *blockstore) DeleteBlock(k cid.Cid) error {
 	return bs.datastore.Delete(dshelp.CidToDsKey(k))
+}
+
+func (bs *blockstore) BloomAdd(k cid.Cid) error {
+	return nil
 }
 
 // AllKeysChan runs a query for keys from the blockstore.

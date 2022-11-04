@@ -48,6 +48,10 @@ func (b *arccache) DeleteBlock(k cid.Cid) error {
 	return err
 }
 
+func (b *arccache) BloomAdd(k cid.Cid) error {
+	return nil
+}
+
 // if ok == false has is inconclusive
 // if ok == true then has respons to question: is it contained
 func (b *arccache) hasCached(k cid.Cid) (has bool, size int, ok bool) {
