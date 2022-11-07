@@ -124,7 +124,7 @@ func (b *bloomcache) BloomAdd(k cid.Cid) error {
 		return nil
 	}
 	if b.BloomActive() {
-		b.bloom.AddTS(k.Hash())
+		b.bloom.AddTS(k.Bytes())
 	}
 	return nil
 }
